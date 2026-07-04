@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-neumorph-light;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  * {
+    @apply transition-all duration-300;
+  }
+}
+
+@layer components {
+  .neumorph {
+    @apply bg-neumorph-light shadow-neumorph;
+  }
+  .neumorph-inset {
+    @apply bg-neumorph-light shadow-neumorph-inset;
+  }
+  .neumorph-hover {
+    @apply hover:shadow-neumorph-lg transition-shadow duration-300;
+  }
+  .neumorph-active {
+    @apply shadow-neumorph-inset;
+  }
+  .neumorph-card {
+    @apply bg-neumorph-light rounded-3xl shadow-neumorph p-6 transition-all duration-300 hover:shadow-neumorph-lg hover:-translate-y-1;
+  }
+  .neumorph-button {
+    @apply bg-neumorph-light rounded-full shadow-neumorph px-6 py-3 transition-all duration-300 hover:shadow-neumorph-lg active:shadow-neumorph-inset;
+  }
+  .neumorph-button-primary {
+    @apply bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full shadow-neumorph-orange px-8 py-3 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/30;
+  }
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4;
+  }
+  .section-subtitle {
+    @apply text-gray-600 max-w-2xl mx-auto;
+  }
+  .badge {
+    @apply inline-flex items-center gap-2 neumorph px-4 py-2 rounded-full mb-4;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-neumorph-light;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-orange-400 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-orange-500;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Loading animation for images */
+.image-loading {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, #f0f0f3 25%, #e0e0e8 50%, #f0f0f3 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
