@@ -35,8 +35,7 @@ const Hero = () => {
                 playsInline
                 className="w-full h-full object-cover"
               >
-                {/* <source src="/videos/awards.mp4" type="video/mp4" /> */}
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                <source src="/videos/awards.mp4" type="video/mp4" />
               </video>
 
               {/* Sound Toggle Button */}
