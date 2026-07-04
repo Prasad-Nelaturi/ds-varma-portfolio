@@ -1,103 +1,91 @@
-import React, { useRef, useState } from "react";
-import YouTube from "react-youtube";
+import React, { useState, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 const Hero = () => {
-  const playerRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   const ribbonText =
     "✦ Creating Dream Spaces That Inspire ✦ Transforming Houses Into Homes ✦ Elegant & Timeless Designs ✦ Premium Interior Solutions ✦ ";
 
-  const onReady = (event) => {
-    playerRef.current = event.target;
-
-    event.target.mute();
-    event.target.playVideo();
-  };
-
-  const toggleMute = () => {
-    if (!playerRef.current) return;
-
-    if (isMuted) {
-      playerRef.current.unMute();
-    } else {
-      playerRef.current.mute();
-    }
-
-    setIsMuted(!isMuted);
-  };
-
-  const opts = {
-    width: "100%",
-    height: "100%",
-    playerVars: {
-      autoplay: 1,
-      mute: 1,
-      controls: 0,
-      rel: 0,
-      modestbranding: 1,
-      loop: 1,
-      playlist: "hnJgE0pRsu0",
-      playsinline: 1,
-    },
-  };
-
   return (
-    <section id="home" className="pt-[72px] bg-white flex justify-center">
-      <div className="relative w-full max-w-7xl px-4">
-        <div className="bg-black pt-3 px-1 rounded-t-2xl border border-neutral-700 shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
-          <div className="relative aspect-video overflow-hidden rounded-2xl">
-            <YouTube
-              videoId="hnJgE0pRsu0"
-              opts={opts}
-              onReady={onReady}
-              className="absolute inset-0 w-full h-full"
-              iframeClassName="w-full h-full"
-            />
+    <section
+      id="home"
+      className="bg-white pt-[72px] relative overflow-hidden bg-black"
+    >
+      {/* Monitor Section */}
+      <div className="relative flex justify-center">
+        <div className="relative">
+          {/* Monitor Frame */}
+          <div className="w-full bg-neutral-900 pt-1 border border-neutral-700 shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
+            {/* Screen */}
+            <div className="relative overflow-hidden rounded-2xl">
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/awards.mp4" type="video/mp4" />
+              </video>
 
-            <button
-              onClick={toggleMute}
-              className="absolute top-3 right-3 z-20 bg-black/60 backdrop-blur-md p-3 rounded-full border border-white/20 hover:bg-black/80 transition"
-            >
-              {isMuted ? (
-                <VolumeX className="text-white w-5 h-5" />
-              ) : (
-                <Volume2 className="text-white w-5 h-5" />
-              )}
-            </button>
+              {/* Sound Toggle Button */}
+              <button
+                onClick={toggleMute}
+                className="absolute top-2 right-2 z-20 bg-black/60 backdrop-blur-md p-2 md:p-3 rounded-full border border-white/20 hover:bg-black/80 transition-all duration-300 hover:scale-110"
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? (
+                  <VolumeX className="w-5 h-5 text-white" />
+                ) : (
+                  <Volume2 className="w-5 h-5 text-white" />
+                )}
+              </button>
 
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+              {/* Gradient for better readability */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
-            <div className="absolute bottom-0 left-0 w-full bg-black/70 backdrop-blur-md border-t border-white/20 overflow-hidden py-2">
-              <div className="flex whitespace-nowrap animate-scroll-ribbon">
-                <span className="text-white text-sm md:text-base font-medium tracking-wide px-4">
-                  {ribbonText.repeat(3)}
-                </span>
+              {/* Scrolling Ribbon Inside Screen */}
+              <div className="absolute bottom-0 left-0 w-full bg-black/70 backdrop-blur-md border-t border-white/20 overflow-hidden py-2">
+                <div className="flex whitespace-nowrap animate-scroll-ribbon">
+                  <span className="text-white text-sm md:text-base font-medium tracking-wide px-4">
+                    {ribbonText.repeat(3)}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="flex flex-col items-center">
-          <div className="w-5 h-20 bg-gradient-to-b from-gray-400 to-gray-900 rounded-xl"></div>
-          <div className="w-[40%] h-4 rounded-full bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700 shadow-xl"></div>
+          {/* Stand */}
+          <div className="flex flex-col items-center">
+            <div className="w-5 h-16 md:h-20 bg-gradient-to-b from-gray-500 to-gray-900 rounded-xl"></div>
+            <div className="w-[40%] h-4 rounded-full bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700 shadow-xl"></div>
+          </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes scroll-ribbon {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-33.33%);
-          }
-        }
+       @keyframes scroll-ribbon {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
 
-        .animate-scroll-ribbon {
-          animation: scroll-ribbon 10s linear infinite;
-        }
+.animate-scroll-ribbon {
+  animation: scroll-ribbon 10s linear infinite;
+}
       `}</style>
     </section>
   );
