@@ -4,7 +4,7 @@ import { Volume2, VolumeX } from "lucide-react";
 const Hero = () => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
-
+  
   const toggleMute = () => {
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
@@ -35,7 +35,7 @@ const Hero = () => {
                 playsInline
                 className="w-full h-full object-cover"
               >
-                <source src="/videos/awards.mov" type="video/mp4" />
+                <source src="/videos/awards.mp4" type="video/mp4" />
               </video>
 
               {/* Sound Toggle Button */}
