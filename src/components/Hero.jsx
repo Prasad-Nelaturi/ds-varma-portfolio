@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import YouTube from "react-youtube";
 import { Volume2, VolumeX } from "lucide-react";
 
