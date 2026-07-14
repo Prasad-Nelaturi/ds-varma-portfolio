@@ -106,7 +106,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-white mb-4">Get in Touch</h4>
             <div className="space-y-3">
-              <p className="text-gray-400 text-sm">+91 90107 99991</p>
+              <p className="text-gray-400 text-sm">+91 90107 99990</p>
               <p className="text-gray-400 text-sm break-all">dsinteriorshyd1@gmail.com</p>
               <p className="text-gray-400 text-sm">
                 Door No 1-31/1, Raja Ram Enclave,<br />
