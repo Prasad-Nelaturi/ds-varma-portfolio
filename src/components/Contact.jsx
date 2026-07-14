@@ -34,8 +34,8 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Phone',
-      value: '+91 90107 99991',
-      link: 'tel:+919010799991',
+      value: '+9190107 99990',
+      link: 'tel:+919010799990',
       color: 'bg-green-100 text-green-600',
     },
     {
@@ -223,7 +223,7 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-neumorph-light rounded-xl shadow-neumorph-inset focus:shadow-neumorph focus:outline-none transition-all"
-                    placeholder="+91 90107 99991"
+                    placeholder="+9190107 99990"
                   />
                 </div>
 
