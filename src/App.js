@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { ArrowUp, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 import Awards from "./components/Awards";
 
 function App() {
-  const [showScrollTop, setShowScrollTop] = useState(false);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -20,18 +20,6 @@ function App() {
     damping: 30,
     restDelta: 0.001,
   });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 500);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <div className="bg-neumorph-light min-h-screen">
@@ -57,18 +45,6 @@ function App() {
 
       {/* Footer */}
       <Footer />
-
-      {showScrollTop && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 p-4 rounded-full bg-orange-500 hover:bg-orange-600 shadow-lg"
-        >
-          <ArrowUp className="w-6 h-6 text-white" />
-        </motion.button>
-      )}
     </div>
   );
 }
@@ -118,11 +94,10 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled
           ? "py-2 bg-neumorph-light/95 backdrop-blur-lg shadow-neumorph-sm"
           : "py-2 bg-transparent"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -158,11 +133,10 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeSection === link.href.substring(1)
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeSection === link.href.substring(1)
                     ? "neumorph-inset text-orange-600"
                     : "neumorph-hover text-gray-600 hover:text-orange-500"
-                }`}
+                  }`}
               >
                 {link.name}
               </a>
@@ -204,11 +178,10 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                    activeSection === link.href.substring(1)
+                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${activeSection === link.href.substring(1)
                       ? "neumorph-inset text-orange-600"
                       : "text-gray-600 hover:text-orange-500"
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </a>
