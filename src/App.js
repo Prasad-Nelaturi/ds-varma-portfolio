@@ -10,6 +10,8 @@ import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Awards from "./components/Awards";
+import AwardsCarousel from "./components/AwardsCarousel";
+
 
 function App() {
 
@@ -38,6 +40,7 @@ function App() {
         <Awards />
         <About />
         <Services />
+        <AwardsCarousel />
         <Portfolio />
         <Testimonials />
         <Contact />
@@ -95,8 +98,8 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled
-          ? "py-2 bg-neumorph-light/95 backdrop-blur-lg shadow-neumorph-sm"
-          : "py-2 bg-transparent"
+        ? "py-2 bg-neumorph-light/95 backdrop-blur-lg shadow-neumorph-sm"
+        : "py-2 bg-transparent"
         }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,8 +137,8 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeSection === link.href.substring(1)
-                    ? "neumorph-inset text-orange-600"
-                    : "neumorph-hover text-gray-600 hover:text-orange-500"
+                  ? "neumorph-inset text-orange-600"
+                  : "neumorph-hover text-gray-600 hover:text-orange-500"
                   }`}
               >
                 {link.name}
@@ -179,8 +182,8 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${activeSection === link.href.substring(1)
-                      ? "neumorph-inset text-orange-600"
-                      : "text-gray-600 hover:text-orange-500"
+                    ? "neumorph-inset text-orange-600"
+                    : "text-gray-600 hover:text-orange-500"
                     }`}
                 >
                   {link.name}
